@@ -4,7 +4,7 @@ import Navbar from '../Common/Navbar';
 import { Shield, FileText, User, Users, MapPin, UserCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const Dashboard = ({ user, onLogout }) => {
+const Dashboard = ({ user, onLogout, organizations = [] }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('dashboard');
   const navigate = useNavigate();
@@ -15,6 +15,9 @@ const Dashboard = ({ user, onLogout }) => {
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
+    if (tab === 'organization') {
+      navigate('/organization');
+    }
   };
 
   const renderContent = () => {
@@ -89,6 +92,16 @@ const Dashboard = ({ user, onLogout }) => {
                   <h3 className="font-medium text-gray-800 text-md">Vendor</h3>
                 </div>
               </div>
+
+              {/* <div className="p-6 bg-transparent border-0 rounded-md">
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center justify-center w-10 h-10 mb-2 rounded-full bg-gradient-to-r from-blue-900 to-blue-400">
+                    <Users className="w-4 h-4 text-white" />
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900">{organizations.length}</p>
+                  <h3 className="font-medium text-gray-800 text-md">Organizations</h3>
+                </div>
+              </div> */}
             </div>
 
             <div className="p-4 bg-white border border-gray-100 rounded-md shadow-lg">
@@ -157,22 +170,6 @@ const Dashboard = ({ user, onLogout }) => {
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-        );
-
-      case 'organization':
-        return (
-          <div className="space-y-6">
-            <div className="p-8 bg-white shadow-lg rounded-xl text-center">
-              <h2 className="mb-4 text-2xl font-bold text-gray-800">Welcome to Organization Management</h2>
-              <p className="text-gray-600">Manage your company structure and add new organizations easily.</p>
-              <button
-                onClick={() => navigate('/organizationform/add')}
-                className="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-2 rounded-md"
-              >
-                Add Organization
-              </button>
             </div>
           </div>
         );

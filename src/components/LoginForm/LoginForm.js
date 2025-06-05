@@ -17,6 +17,7 @@ const LoginForm = ({ onLoginSuccess }) => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
     for (let i = 0; i < 5; i++) {
+      3
       result += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     setCaptchaValue(result);
